@@ -52,7 +52,7 @@ export default function VendorsContainer() {
   }
 
   const handleDelete = id => {
-    if (window.confirm(`Want to delete the id ${id}?`)) {
+    if (window.confirm(`Deseja excluir o fornecedor ${id}?`)) {
       deleteVendor(id)
     }
   }
@@ -60,7 +60,7 @@ export default function VendorsContainer() {
   return (
     <Container>
       <Header>
-        <h1>Vendors ({vendors.length})</h1>
+        <h1>Fornecedores ({vendors.length})</h1>
         <div>
           <Input
             type="search"

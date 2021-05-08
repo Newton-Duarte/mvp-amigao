@@ -45,18 +45,18 @@ export function ProductModal({ isOpen, onRequestClose, editProduct, onSubmit }) 
     >
       <Container onSubmit={handleSubmit}>
         <Header>
-          <h2>{product.id ? 'Edit Product' : 'New Product'}</h2>
+          <h2>{product.id ? 'Editar Produto' : 'Novo Produto'}</h2>
         </Header>
         <FormGroup>
           <Input
             name="name"
-            label="Name"
+            label="Nome"
             value={product.name}
             onChange={({ target }) => setProduct({ ...product, name: target.value })}
           />
           <Input
             name="price"
-            label="Price"
+            label="Preço"
             type="price"
             value={product.price}
             onChange={({ target }) => setProduct({ ...product, price: target.value })}

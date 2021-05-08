@@ -62,7 +62,7 @@ export function CustomersTable({ search, onEdit, onDelete }) {
           ))}
           {!renderCustomers.length && (
             <tr>
-              <td colSpan="6" style={{ textAlign: 'center' }}>Nothing found with the term: <strong>{search}</strong></td>
+              <td colSpan="6" style={{ textAlign: 'center' }}>Nenhum registro encontrado com o termo: <strong>{search}</strong></td>
             </tr>
           )}
         </tbody>

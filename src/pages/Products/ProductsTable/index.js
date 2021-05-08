@@ -21,8 +21,9 @@ export function ProductsTable({ search, onEdit, onDelete }) {
       <table>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Price</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Ações</th>
           </tr>
         </thead>
 
@@ -32,14 +33,14 @@ export function ProductsTable({ search, onEdit, onDelete }) {
               <td>{product.name}</td>
               <td>{formatNumberToCurrency(product.price)}</td>
               <td>
-                <Tooltip text="Edit">
+                <Tooltip text="Editar">
                   <ButtonIcon
                     onClick={() => onEdit(product)}
                   >
                     <FiEdit2 />
                   </ButtonIcon>
                 </Tooltip>
-                <Tooltip text="Delete">
+                <Tooltip text="Excluir">
                   <ButtonIcon onClick={() => onDelete(product.id)}>
                     <FiTrash />
                   </ButtonIcon>
@@ -49,7 +50,7 @@ export function ProductsTable({ search, onEdit, onDelete }) {
           ))}
           {!renderProducts.length && (
             <tr>
-              <td colSpan="6" style={{ textAlign: 'center' }}>Nothing found with the term: <strong>{search}</strong></td>
+              <td colSpan="6" style={{ textAlign: 'center' }}>Nenhum registro encontrado com o termo: <strong>{search}</strong></td>
             </tr>
           )}
         </tbody>

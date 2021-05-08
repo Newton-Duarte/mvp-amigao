@@ -52,7 +52,7 @@ export default function Users() {
   }
 
   const handleDelete = id => {
-    if (window.confirm(`Want to delete the id ${id}?`)) {
+    if (window.confirm(`Deseja excluir o usuário ${id}?`)) {
       deleteUser(id)
     }
   }
@@ -60,7 +60,7 @@ export default function Users() {
   return (
     <Container>
       <Header>
-        <h1>Users ({users.length})</h1>
+        <h1>Usuários ({users.length})</h1>
         <div>
           <Input
             type="search"

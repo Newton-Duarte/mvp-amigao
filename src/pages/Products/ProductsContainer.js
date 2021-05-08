@@ -52,7 +52,7 @@ export default function ProductsContainer() {
   }
 
   const handleDelete = id => {
-    if (window.confirm(`Want to delete the id ${id}?`)) {
+    if (window.confirm(`Deseja excluir o produto ${id}?`)) {
       deleteProduct(id)
     }
   }
@@ -60,7 +60,7 @@ export default function ProductsContainer() {
   return (
     <Container>
       <Header>
-        <h1>Products ({products.length})</h1>
+        <h1>Produtos ({products.length})</h1>
         <div>
           <Input
             type="search"

@@ -15,30 +15,30 @@ export const routes = [
     component: Home,
     exact: true,
     icon: '',
-    name: 'Home',
+    name: 'Início',
   },
   {
     path: '/users',
     component: Users,
     icon: '',
-    name: 'Users',
+    name: 'Usuários',
   },
   {
     path: '/products',
     component: Products,
     icon: '',
-    name: 'Products',
+    name: 'Produtos',
   },
   {
     path: '/customers',
     component: Customers,
     icon: '',
-    name: 'Customers',
+    name: 'Clientes',
   },
   {
     path: '/vendors',
     component: Vendors,
     icon: '',
-    name: 'Vendors',
+    name: 'Fornecedores',
   }
 ]

@@ -50,13 +50,13 @@ export function UserModal({ isOpen, onRequestClose, editUser, onSubmit }) {
         <FormGroup>
           <Input
             name="name"
-            label="Name"
+            label="Nome"
             value={user.name}
             onChange={({ target }) => setUser({ ...user, name: target.value })}
           />
           <Input
             name="email"
-            label="Email"
+            label="E-mail"
             type="email"
             value={user.email}
             onChange={({ target }) => setUser({ ...user, email: target.value })}

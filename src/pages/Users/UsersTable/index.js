@@ -21,10 +21,10 @@ export function UsersTable({ search, onEdit, onDelete }) {
       <table>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Created At</th>
-            <th>Actions</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Criado em</th>
+            <th>Ações</th>
           </tr>
         </thead>
 
@@ -37,14 +37,14 @@ export function UsersTable({ search, onEdit, onDelete }) {
                 {formatDate(new Date(user.createdAt), 'pt-BR')}
               </td>
               <td>
-                <Tooltip text="Edit">
+                <Tooltip text="Editar">
                   <ButtonIcon
                     onClick={() => onEdit(user)}
                   >
                     <FiEdit2 />
                   </ButtonIcon>
                 </Tooltip>
-                <Tooltip text="Delete">
+                <Tooltip text="Excluir">
                   <ButtonIcon onClick={() => onDelete(user.id)}>
                     <FiTrash />
                   </ButtonIcon>
@@ -54,7 +54,7 @@ export function UsersTable({ search, onEdit, onDelete }) {
           ))}
           {!renderUsers.length && (
             <tr>
-              <td colSpan="6" style={{ textAlign: 'center' }}>Nothing found with the term: <strong>{search}</strong></td>
+              <td colSpan="6" style={{ textAlign: 'center' }}>Nenhum registro encontrado com o termo: <strong>{search}</strong></td>
             </tr>
           )}
         </tbody>

@@ -52,7 +52,7 @@ export default function CustomersContainer() {
   }
 
   const handleDelete = id => {
-    if (window.confirm(`Want to delete the id ${id}?`)) {
+    if (window.confirm(`Deseja excluir o cliente ${id}?`)) {
       deleteCustomer(id)
     }
   }
@@ -60,7 +60,7 @@ export default function CustomersContainer() {
   return (
     <Container>
       <Header>
-        <h1>Customers ({customers.length})</h1>
+        <h1>Clientes ({customers.length})</h1>
         <div>
           <Input
             type="search"

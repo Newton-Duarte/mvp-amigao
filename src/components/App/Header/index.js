@@ -7,7 +7,7 @@ export function Header() {
   return (
     <Container>
       <Content>
-        <h3>React MVP Template</h3>
+        <h3>MVP Amigão</h3>
         
         <Navigation>
           <NavItem

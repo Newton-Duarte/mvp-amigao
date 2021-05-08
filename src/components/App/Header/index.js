@@ -1,6 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Container, Content, Navigation, NavItem } from './styles';
 
+import { routes } from '../../../routes/config'
+
 export function Header() {
   const { pathname } = useLocation()
 
@@ -10,20 +12,16 @@ export function Header() {
         <h3>MVP Amigão</h3>
         
         <Navigation>
-          <NavItem
-            active={pathname === '/'}
-          >
-            <Link
-              to="/"
-            >Home</Link>
-          </NavItem>
-          <NavItem
-            active={pathname === '/users'}
-          >
-            <Link
-              to="/users"
-            >Users</Link>
-          </NavItem>
+          {routes.map(route => (
+            <NavItem
+              key={route.name}
+              active={pathname === route.path}
+            >
+              <Link
+                to={route.path}
+              >{route.name}</Link>
+            </NavItem>
+          ))}
         </Navigation>
       </Content>
     </Container>

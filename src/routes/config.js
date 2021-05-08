@@ -6,6 +6,7 @@ import Home from '../pages/Home';
 // Private Routes
 const Users = lazy(() => import('../pages/Users'));
 const Products = lazy(() => import('../pages/Products'));
+const Customers = lazy(() => import('../pages/Customers'));
 
 export const routes = [
   {
@@ -26,5 +27,11 @@ export const routes = [
     component: Products,
     icon: '',
     name: 'Products',
+  },
+  {
+    path: '/customers',
+    component: Customers,
+    icon: '',
+    name: 'Customers',
   }
 ]

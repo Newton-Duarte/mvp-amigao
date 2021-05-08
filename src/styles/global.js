@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { shade } from 'polished'
 
 export const GlobalStyle = createGlobalStyle`
   :root {
@@ -61,6 +62,8 @@ export const GlobalStyle = createGlobalStyle`
     padding: 3rem;
     position: relative;
     border-radius: 0.24rem;
+    max-height: 95vh;
+    overflow: auto;
   }
   .react-modal-close {
     position: absolute;
@@ -71,6 +74,20 @@ export const GlobalStyle = createGlobalStyle`
     transition: filter .2s;
     &:hover {
       filter: brightness(0.8);
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--text-body);
+    border-radius: 0.5rem;
+
+    &:hover {
+      background: ${shade(.2, '#969cb3')};
     }
   }
 `

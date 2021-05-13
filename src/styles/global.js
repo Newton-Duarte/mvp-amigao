@@ -54,6 +54,10 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 800px) {
+      padding: 1rem;
+    }
   }
   .react-modal-content {
     width: 100%;
@@ -64,6 +68,16 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: 0.24rem;
     max-height: 95vh;
     overflow: auto;
+
+    @media (max-width: 800px) {
+      padding: 1rem;
+    }
+  }
+  .react-modal-content.large {
+    max-width: 800px;
+  }
+  .react-modal-content.small {
+    max-width: 400px;
   }
   .react-modal-close {
     position: absolute;

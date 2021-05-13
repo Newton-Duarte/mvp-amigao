@@ -2,6 +2,7 @@ import { UsersProvider } from './useUsers'
 import { ProductsProvider } from './useProducts'
 import { CustomersProvider } from './useCustomers'
 import { VendorsProvider } from './useVendors'
+import { MovementsProvider } from './useMovements'
 
 export function AppProvider({ children }) {
   return (
@@ -9,7 +10,9 @@ export function AppProvider({ children }) {
       <ProductsProvider>
         <CustomersProvider>
           <VendorsProvider>
-            {children}
+            <MovementsProvider>
+              {children}
+            </MovementsProvider>
           </VendorsProvider>
         </CustomersProvider>
       </ProductsProvider>

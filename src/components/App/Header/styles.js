@@ -18,6 +18,10 @@ export const Content = styled.div`
 
 export const Navigation = styled.ul`
   display: flex;
+  
+  @media (max-width: 800px) {
+    display: none;
+  }
 `
 
 export const NavItem = styled.li`

@@ -14,16 +14,20 @@ export const Container = styled.div`
     background: var(--blue);
     color: #fff;
   }
-  &.Faturado {
-    background: var(--red);
-    color: #fff;
-  }
   &.Finalizado {
     background: var(--green);
     color: #fff;
   }
   &.Cancelado {
     background: var(--text-body);
+    color: #fff;
+  }
+  &.Entrada {
+    background: var(--red);
+    color: #fff;
+  }
+  &.Saída {
+    background: var(--blue-light);
     color: #fff;
   }
 `

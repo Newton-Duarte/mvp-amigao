@@ -11,8 +11,28 @@ export const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  h3 {
-    color: #fff;
+  > div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+      color: #fff;
+    }
+
+    button {
+      display: none;
+
+      @media (max-width: 800px) {
+        display: block;
+      }
+    }
+  }
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    align-items: flex-start;
   }
 `
 
@@ -20,7 +40,16 @@ export const Navigation = styled.ul`
   display: flex;
   
   @media (max-width: 800px) {
-    display: none;
+    max-height: 0;
+    visibility: hidden;
+    flex-direction: column;
+    transition: max-height .2s ease-in;
+    
+    ${props => props.showMenu && css`
+      visibility: visible;
+      max-height: 172px;
+      margin: 1rem 0;
+    `}
   }
 `
 
@@ -36,5 +65,12 @@ export const NavItem = styled.li`
     }
     & + li {
       margin-left: 1rem;
+    }
+
+    @media (max-width: 800px) {
+      & + li {
+        margin-top: 1rem;
+        margin-left: 0;
+      } 
     }
 `

@@ -6,7 +6,7 @@ import { Input } from '../Form';
 import { Tooltip } from '../Tooltip';
 import { Container, Append, Filters } from './styles';
 
-export function SearchBar({ containerStyle = {}, filters, onSaveFilter, ...rest }) {
+export function SearchBar({ containerStyle = {}, filters, onSaveFilter, children, ...rest }) {
   const filtersRef = useRef()
   const searchBarRef = useRef()
   const [showFilters, setShowFilters] = useState(false)
@@ -77,6 +77,7 @@ export function SearchBar({ containerStyle = {}, filters, onSaveFilter, ...rest 
             onChange={({ target }) => setDate({ ...date, end: target.value })}
             containerStyle={{ height: '73px', fontWeight: 'bold' }}
           />
+          {children}
           <Button id="save" onClick={handleFilter}>Salvar</Button>
         </Filters>
       )}

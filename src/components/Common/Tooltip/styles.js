@@ -16,7 +16,7 @@ export const Text = styled.span`
   font-size: 14px;
   position: absolute;
   top: 50%;
-  left: 20px;
+  left: ${props => props.left || '24px'};
   transform: translateY(-50%);
   z-index: 1;
   visibility: hidden;

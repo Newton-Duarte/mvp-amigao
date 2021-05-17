@@ -48,3 +48,55 @@ export const Header = styled.div`
     }
   }
 `
+export const TitleFilters = styled.div`
+  flex-direction: column;
+  align-items: flex-start !important;
+`
+
+export const ActiveFilters = styled.ul`
+  display: flex;
+  margin-top: 0.5rem;
+  
+  li {
+    display: flex;
+    align-items: center;
+    background: var(--input-background);
+    padding: .5rem;
+    border-radius: .25rem;
+
+    > span {
+      font-weight: bold;
+      padding-right: .5rem;
+      color: var(--text-title);
+    }
+
+    button {
+      background: var(--blue-light);
+      border-radius: 0.25rem;
+      color: #fff;
+      margin-left: .5rem;
+    }
+
+    & + li {
+      margin-left: 1rem;
+    }
+  }
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    margin-bottom: 1rem;
+
+    li {
+      align-self: flex-start;
+
+      > div {
+        width: auto;
+      }
+
+      & + li {
+        margin-left: 0;
+        margin-top: 1rem;
+      }
+    }
+  }
+`

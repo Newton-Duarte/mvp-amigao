@@ -8,6 +8,7 @@ export function Select({
   children, 
   error,
   containerStyle = {}, 
+  disableOptionLabel = false,
   ...rest 
 }) {
   const selectRef = useRef(null);
@@ -40,7 +41,7 @@ export function Select({
         onBlur={handleInputBlur}
         {...rest}
       >
-        <option value="" disabled>{label}</option>
+        <option value="" disabled={disableOptionLabel}>{label}</option>
         {children}
       </select>
       {error && <span className="error">{error}</span>}

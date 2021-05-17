@@ -10,7 +10,7 @@ import { Modal, Select, Button, Input, FormGroup, Chip } from "../../../componen
 import { MovementProductsTable } from '../MovementProductsTable'
 import { EditMovementItemModal } from '../EditMovementItemModal'
 
-import { AddItem, Container, Header, ItemsContainer, ItemsHeader, ItemsTotal } from './styles';
+import { Actions, AddItem, Container, Header, ItemsContainer, ItemsHeader, ItemsTotal } from './styles';
 import { formatNumberToCurrency } from "../../../utils/formatNumberToCurrency";
 
 export function MovementModal({ isOpen, onRequestClose, editMovement, onSubmit }) {
@@ -159,6 +159,18 @@ export function MovementModal({ isOpen, onRequestClose, editMovement, onSubmit }
     setMovement({ ...movement, userId: user.id, user: user.name })
   }
 
+  const handleChangeType = ({ target }) => {
+    setMovement({ 
+      ...movement,
+      type: target.value,
+      customer: '',
+      customerId: '',
+      vendor: '',
+      vendorId: '',
+      items: []
+    })
+  }
+
   const handleChangeCustomer = ({ target }) => {
     const customerId = target.value
     const customer = customers.find(customer => +customer.id === +customerId)
@@ -202,7 +214,7 @@ export function MovementModal({ isOpen, onRequestClose, editMovement, onSubmit }
             name="type"
             label="Tipo"
             value={movement.type}
-            onChange={({ target }) => setMovement({ ...movement, type: target.value })}
+            onChange={handleChangeType}
             disabled={movement.status !== 'Pendente'}
           >
             <option value="Entrada">Entrada</option>
@@ -275,7 +287,10 @@ export function MovementModal({ isOpen, onRequestClose, editMovement, onSubmit }
             onDeleteClick={handleDeleteItem}
           />
         </ItemsContainer>
-        <Button type="submit" disabled={movement.status !== 'Pendente'}>Salvar</Button>
+        <Actions>
+          <Button type="button" onClick={onRequestClose}>Cancelar</Button>
+          <Button type="submit" disabled={movement.status !== 'Pendente'}>Salvar</Button>
+        </Actions>
       </Container>
       <EditMovementItemModal
         isOpen={isItemModalOpen}

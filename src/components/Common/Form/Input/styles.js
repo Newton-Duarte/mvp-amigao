@@ -9,6 +9,7 @@ export const Container = styled.div`
     display: block;
     margin-bottom: .5rem;
     color: var(--text-title);
+    font-size: 14px;
   }
   input {
     outline: 0;

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  border: 1px solid var(--text-title);
+  border: 2px solid var(--text-body);
+  border-radius: 0.25rem;
   padding: 1rem;
 
   table {

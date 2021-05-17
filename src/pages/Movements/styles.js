@@ -12,12 +12,12 @@ export const Header = styled.div`
     color: var(--text-title);
   }
 
-  div {
+  > div {
     display: flex;
     align-items: center;
     /* width: 100%; */
 
-    button {
+    button[type="button"] {
       width: 108px;
       height: 54px;
       border: none;

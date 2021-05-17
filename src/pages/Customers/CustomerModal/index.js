@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { Modal, Button, Input, FormGroup } from '../../../components/Common';
 
-import { Container, Header } from './styles';
+import { Actions, Container, Header } from './styles';
 
 export function CustomerModal({ isOpen, onRequestClose, editCustomer, onSubmit }) {
   const [customer, setCustomer] = useState({
@@ -141,7 +141,10 @@ export function CustomerModal({ isOpen, onRequestClose, editCustomer, onSubmit }
             onChange={({ target }) => setCustomer({ ...customer, email: target.value })}
           />
         </FormGroup>
-        <Button type="submit">Save</Button>
+        <Actions>
+          <Button type="button" onClick={onRequestClose}>Cancelar</Button>
+          <Button type="submit">Salvar</Button>
+        </Actions>
       </Container>
     </Modal>
   )

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { Modal, Button, Input, FormGroup } from '../../../components/Common';
 
-import { Container, Header } from './styles';
+import { Actions, Container, Header } from './styles';
 
 export function VendorModal({ isOpen, onRequestClose, editVendor, onSubmit }) {
   const [vendor, setVendor] = useState({
@@ -141,7 +141,10 @@ export function VendorModal({ isOpen, onRequestClose, editVendor, onSubmit }) {
             onChange={({ target }) => setVendor({ ...vendor, email: target.value })}
           />
         </FormGroup>
-        <Button type="submit">Save</Button>
+        <Actions>
+          <Button type="button" onClick={onRequestClose}>Cancelar</Button>
+          <Button type="submit">Salvar</Button>
+        </Actions>
       </Container>
     </Modal>
   )

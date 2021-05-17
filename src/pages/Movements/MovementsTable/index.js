@@ -7,12 +7,31 @@ import { ButtonIcon, Chip } from '../../../components/Common'
 import { Tooltip } from '../../../components/Common/Tooltip';
 import { formatNumberToCurrency } from '../../../utils/formatNumberToCurrency';
 
-export function MovementsTable({ movements, search, onEdit, onComplete, onDelete }) {
-  const renderMovements = movements.filter(
-    obj => Object.keys(obj)
-      .some(key => convertStringToCompare(obj[key])
-      .includes(convertStringToCompare(search)))
-    )
+export function MovementsTable({ movements, search, date, onEdit, onComplete, onDelete }) {
+  const renderMovements =
+  movements.filter(
+    movement => {
+      const [movementYear, movementMonth, movementDate] = new Date(movement.createdAt).toISOString().substr(0, 10).split('-')
+      const movementDateTime = new Date(movementYear, movementMonth - 1, movementDate, 0, 0, 0).getTime()
+
+      const [startYear, startMonth, startDate] = date.start.split('-')
+      const [endYear, endMonth, endDate] = date.end.split('-')
+
+      const startDateTime = new Date(startYear, startMonth - 1, startDate, 0, 0, 0).getTime()
+      const endDateTime = new Date(endYear, endMonth - 1, endDate, 0, 0, 0).getTime()
+
+      if (movementDateTime >= startDateTime && movementDateTime <= endDateTime) {
+        return true
+      }
+
+      return false
+    }
+  ) 
+  .filter(
+      obj => Object.keys(obj)
+        .some(key => convertStringToCompare(obj[key])
+        .includes(convertStringToCompare(search)))
+      )
 
   return (
     <Container>

@@ -5,9 +5,6 @@ export const Container = styled.form`
     margin-bottom: 2rem;
     color: var(--text-title);
   }
-  button[type="submit"] {
-    margin-top: 2rem;
-  }
 `
 
 export const Header = styled.div`
@@ -82,5 +79,24 @@ export const AddItem = styled.div`
       margin-top: 1rem;
       width: 100%;
     }
+  }
+`
+
+export const Actions = styled.div`
+  display: flex;
+  margin-top: 2rem;
+
+  button:first-child {
+    background: var(--input-background);
+    color: var(--text-title);
+    transition: filter .2s;
+
+    &:hover {
+      filter: brightness(.9);
+    }
+  }
+
+  button + button {
+    margin-left: 1rem;
   }
 `

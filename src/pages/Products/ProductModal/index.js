@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { Modal, Button, Input, FormGroup } from '../../../components/Common';
 
-import { Container, Header } from './styles';
+import { Actions, Container, Header } from './styles';
 
 export function ProductModal({ isOpen, onRequestClose, editProduct, onSubmit }) {
   const [product, setProduct] = useState({
@@ -62,7 +62,10 @@ export function ProductModal({ isOpen, onRequestClose, editProduct, onSubmit }) 
             onChange={({ target }) => setProduct({ ...product, price: target.value })}
           />
         </FormGroup>
-        <Button type="submit">Save</Button>
+        <Actions>
+          <Button type="button" onClick={onRequestClose}>Cancelar</Button>
+          <Button type="submit">Salvar</Button>
+        </Actions>
       </Container>
     </Modal>
   )

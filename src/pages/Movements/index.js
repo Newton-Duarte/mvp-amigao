@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Input } from '../../components/Common';
+import { Button, SearchBar } from '../../components/Common';
 import { MovementModal } from './MovementsModal';
 import { MovementsTable } from './MovementsTable';
 import { MovementsTotalizer } from './MovementsTotalizer';
@@ -16,6 +16,10 @@ export default function Movements() {
     completeMovement 
   } = useMovements()
   const [movementEdit, setMovementEdit] = useState()
+  const [date, setDate] = useState({
+    start: new Date().toISOString().substr(0, 10),
+    end: new Date().toISOString().substr(0, 10)
+  })
   const [searchTerm, setSearchTerm] = useState('')
   const [debouncedTerm, setDebouncedTerm] = useState('')
 
@@ -67,17 +71,19 @@ export default function Movements() {
       <Header>
         <h1>Movimentos ({movements.length})</h1>
         <div>
-          <Input
-            type="search"
+          <SearchBar
+            type="text"
             placeholder="Pesquisar..."
             onChange={({ target }) => setSearchTerm(target.value)}
+            filters
+            onSaveFilter={date => setDate(date)}
           />
-          <button
+          <Button
             type="button"
             onClick={() => setIsMovementModalOpen(true)}
           >
             Novo
-          </button>
+          </Button>
         </div>
       </Header>
       <MovementsTotalizer />
@@ -90,6 +96,7 @@ export default function Movements() {
       <MovementsTable
         movements={movements} 
         search={debouncedTerm}
+        date={date}
         onEdit={handleEdit}
         onComplete={handleComplete}
         onDelete={handleDelete}

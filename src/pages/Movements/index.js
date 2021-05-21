@@ -9,6 +9,7 @@ import { Container, Header, TitleFilters, ActiveFilters } from './styles'
 import { useUsers } from '../../hooks/useUsers';
 import { formatDate } from '../../utils/formatDate';
 import { FiX } from 'react-icons/fi';
+import { useProducts } from '../../hooks/useProducts';
 
 export default function Movements() {
   const [isMovementModalOpen, setIsMovementModalOpen] = useState(false);
@@ -34,6 +35,7 @@ export default function Movements() {
   })
 
   const { users } = useUsers()
+  const { updateProductQuantity } = useProducts()
 
   useEffect(() => {
     const timerId = setTimeout(() => setDebouncedTerm(searchTerm), 500)
@@ -56,6 +58,18 @@ export default function Movements() {
       setIsMovementModalOpen(false)
     } else {
       createMovement(movement)
+      
+      const isOutput = movement.type === 'Saída'
+
+      if (isOutput) {
+        movement.items.forEach(item => {
+          updateProductQuantity(item.productId, -item.quantity)
+        })
+      } else {
+        movement.items.forEach(item => {
+          updateProductQuantity(item.productId, item.quantity)
+        })
+      }
       setIsMovementModalOpen(false)
     }
   }

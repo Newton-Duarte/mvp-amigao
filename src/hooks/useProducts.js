@@ -10,7 +10,8 @@ export function ProductsProvider({ children }) {
       {
         id: 1,
         name: 'Água Mineral Mainá 20L',
-        price: 6.00
+        price: 6.00,
+        quantity: 0
       }
     ])
   }, [])
@@ -20,7 +21,8 @@ export function ProductsProvider({ children }) {
     setProducts([...products, {
       ...productInput,
       createdAt: new Date(),
-      id: lastId ? lastId + 1 : 1
+      id: lastId ? lastId + 1 : 1,
+      quantity: 0
     }])
   }
 
@@ -38,6 +40,14 @@ export function ProductsProvider({ children }) {
     )
   }
 
+  function updateProductQuantity(id, quantity) {
+    const product = products.find(product => +product.id === +id)
+
+    if (product) {
+      product.quantity += +quantity
+    }
+  }
+
   function deleteProduct(id) {
     setProducts(
       products.filter(product => product.id !== id)
@@ -45,7 +55,7 @@ export function ProductsProvider({ children }) {
   }
 
   return (
-    <ProductsContext.Provider value={{ products, createProduct, updateProduct, deleteProduct }}>
+    <ProductsContext.Provider value={{ products, createProduct, updateProduct, updateProductQuantity, deleteProduct }}>
       {children}
     </ProductsContext.Provider>
   )

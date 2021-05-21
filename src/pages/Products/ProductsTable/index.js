@@ -23,6 +23,7 @@ export function ProductsTable({ search, onEdit, onDelete }) {
           <tr>
             <th>Nome</th>
             <th>Preço</th>
+            <th>Quantidade</th>
             <th>Ações</th>
           </tr>
         </thead>
@@ -32,6 +33,7 @@ export function ProductsTable({ search, onEdit, onDelete }) {
             <tr key={product.id}>
               <td>{product.name}</td>
               <td>{formatNumberToCurrency(product.price)}</td>
+              <td>{product.quantity}</td>
               <td>
                 <Tooltip text="Editar">
                   <ButtonIcon

@@ -9,6 +9,7 @@ const Products = lazy(() => import('../pages/Products'));
 const Customers = lazy(() => import('../pages/Customers'));
 const Vendors = lazy(() => import('../pages/Vendors'));
 const Movements = lazy(() => import('../pages/Movements'));
+const Outputs = lazy(() => import('../pages/Outputs'));
 
 export const routes = [
   {
@@ -41,6 +42,12 @@ export const routes = [
     component: Vendors,
     icon: '',
     name: 'Fornecedores',
+  },
+  {
+    path: '/outputs',
+    component: Outputs,
+    icon: '',
+    name: 'Saídas',
   },
   {
     path: '/movements',

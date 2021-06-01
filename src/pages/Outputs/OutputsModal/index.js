@@ -158,15 +158,9 @@ export function OutputModal({ isOpen, onRequestClose, editOutput, onSubmit }) {
   }
 
   const handleChangeType = ({ target }) => {
-    setOutput({ 
-      ...output,
-      type: target.value,
-      customer: '',
-      customerId: '',
-      vendor: '',
-      vendorId: '',
-      items: []
-    })
+    const typeId = target.value
+    const outputType = outputTypes.find(outputType => +outputType.id === +typeId)
+    setOutput({ ...output, typeId: outputType.id, type: outputType.name })
   }
 
   const handleChangeCustomer = ({ target }) => {

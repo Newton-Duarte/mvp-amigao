@@ -21,6 +21,7 @@ export function CustomersProvider({ children }) {
         postalCode: '',
         phone: '',
         email: '',
+        priceTableId: '',
         createdAt: new Date(2021, 5, 1)
       }, 
       {
@@ -37,6 +38,7 @@ export function CustomersProvider({ children }) {
         postalCode: '',
         phone: '',
         email: '',
+        priceTableId: '',
         createdAt: new Date(2021, 5, 1)
       }
     ])

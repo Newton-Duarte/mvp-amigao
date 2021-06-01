@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { Modal, Button, Input, FormGroup } from '../../../components/Common';
+import { usePriceTables } from '../../../hooks/usePriceTables'
+
+import { Modal, Button, Input, Select, FormGroup } from '../../../components/Common';
 
 import { Actions, Container, Header } from './styles';
 
@@ -17,8 +19,11 @@ export function CustomerModal({ isOpen, onRequestClose, editCustomer, onSubmit }
     state: '',
     postalCode: '',
     phone: '',
-    email: ''
+    email: '',
+    priceTableId: ''
   })
+
+  const { priceTables } = usePriceTables()
 
   useEffect(() => {
     if (editCustomer) {
@@ -54,8 +59,21 @@ export function CustomerModal({ isOpen, onRequestClose, editCustomer, onSubmit }
       state: '',
       postalCode: '',
       phone: '',
-      email: ''
+      email: '',
+      priceTableId: ''
     })
+  }
+
+  const handleChangePriceTable = ({ target }) => {
+    const priceTableId = target.value
+    const priceTable = priceTables.find(priceTable => +priceTable.id === +priceTableId)
+
+    if (priceTable) {
+      setCustomer({
+        ...customer,
+        priceTableId: priceTableId
+      })
+    }
   }
 
   return (
@@ -140,6 +158,14 @@ export function CustomerModal({ isOpen, onRequestClose, editCustomer, onSubmit }
             value={customer.email}
             onChange={({ target }) => setCustomer({ ...customer, email: target.value })}
           />
+          <Select
+            name="priceTable"
+            label="Tabela Preço"
+            value={customer.priceTableId}
+            onChange={handleChangePriceTable}
+          >
+            {priceTables.map(priceTable => <option key={priceTable.id} value={priceTable.id}>{priceTable.name}</option>)}
+          </Select>
         </FormGroup>
         <Actions>
           <Button type="button" onClick={onRequestClose}>Cancelar</Button>

@@ -47,7 +47,7 @@ export const Navigation = styled.ul`
     
     ${props => props.showMenu && css`
       visibility: visible;
-      max-height: 172px;
+      max-height: 220px;
       margin: 1rem 0;
     `}
   }

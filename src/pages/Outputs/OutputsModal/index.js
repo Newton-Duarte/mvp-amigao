@@ -5,6 +5,7 @@ import { useProducts } from '../../../hooks/useProducts'
 import { useCustomers } from '../../../hooks/useCustomers'
 import { useUsers } from '../../../hooks/useUsers'
 import { useOutputTypes } from '../../../hooks/useOutputTypes'
+import { usePriceTables } from '../../../hooks/usePriceTables'
 
 import { Modal, Select, Button, Input, FormGroup, Chip } from "../../../components/Common";
 import { OutputProductsTable } from '../OutputProductsTable'
@@ -35,10 +36,12 @@ export function OutputModal({ isOpen, onRequestClose, editOutput, onSubmit }) {
   const { customers } = useCustomers()
   const { users } = useUsers()
   const { outputTypes } = useOutputTypes()
+  const { priceTables } = usePriceTables()
 
   const [lastId, setLastId] = useState(0)
   const [isItemModalOpen, setIsItemModalOpen] = useState(false)
   const [editOutputItem, setEditOutputItem] = useState()
+  const [priceTable, setPriceTable] = useState()
 
   useEffect(() => {
     if (editOutput) {
@@ -154,25 +157,75 @@ export function OutputModal({ isOpen, onRequestClose, editOutput, onSubmit }) {
   const handleChangeUser = ({ target }) => {
     const userId = target.value
     const user = users.find(user => +user.id === +userId)
-    setOutput({ ...output, userId: user.id, user: user.name })
+    if (user) {
+      setOutput({ ...output, userId: user.id, user: user.name })
+    }
   }
 
   const handleChangeType = ({ target }) => {
     const typeId = target.value
     const outputType = outputTypes.find(outputType => +outputType.id === +typeId)
-    setOutput({ ...output, typeId: outputType.id, type: outputType.name })
+    if (outputType) {
+      setOutput({ ...output, typeId: outputType.id, type: outputType.name })
+    }
   }
 
   const handleChangeCustomer = ({ target }) => {
     const customerId = target.value
     const customer = customers.find(customer => +customer.id === +customerId)
-    setOutput({ ...output, customerId: customer.id, customer: customer.name })
+
+    if (customer) {
+      setOutput({ 
+        ...output, 
+        customerId: customer.id, 
+        customer: customer.name,
+        priceTableId: customer.priceTableid
+      })
+
+      if (!customer.priceTableId) {
+        return setPriceTable()
+      }
+
+      const foundPriceTable = priceTables.find(pTable => +pTable.id === +customer.priceTableId)
+
+      if (foundPriceTable) {
+        setPriceTable(foundPriceTable)
+      }
+    }
   }
 
   const handleChangeProduct = ({ target }) => {
     const productId = target.value
     const product = products.find(product => +product.id === +productId)
-    setOutputItem({ ...outputItem, productId: product.id, product: product.name, productPrice: product.price })
+
+    if (!product) return
+
+    if (!priceTable) {
+      return setOutputItem({ 
+        ...outputItem, 
+        productId: product.id, 
+        product: product.name, 
+        productPrice: product.price
+      })
+    }
+
+    const priceTableProduct = priceTable.items.find(priceTableProduct => +priceTableProduct.productId === +productId)
+
+    if (!priceTableProduct) {
+      return setOutputItem({ 
+        ...outputItem, 
+        productId: product.id, 
+        product: product.name, 
+        productPrice: product.price
+      })
+    }
+
+    setOutputItem({ 
+      ...outputItem, 
+      productId: product.id, 
+      product: product.name, 
+      productPrice: priceTableProduct.productPrice
+    })
   }
 
   return (
@@ -210,7 +263,7 @@ export function OutputModal({ isOpen, onRequestClose, editOutput, onSubmit }) {
             label="Cliente"
             value={output.customerId}
             onChange={handleChangeCustomer}
-            disabled={output.status !== 'Pendente'}
+            disabled={output.status !== 'Pendente' || output.items.length > 0}
           >
             {customers.map(customer => <option key={customer.id} value={customer.id}>{customer.name}</option>)}
           </Select>

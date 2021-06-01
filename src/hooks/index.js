@@ -3,6 +3,7 @@ import { ProductsProvider } from './useProducts'
 import { CustomersProvider } from './useCustomers'
 import { VendorsProvider } from './useVendors'
 import { MovementsProvider } from './useMovements'
+import { PriceTablesProvider } from './usePriceTables'
 import { OutputTypesProvider } from './useOutputTypes'
 import { InputTypesProvider } from './useInputTypes'
 import { OutputsProvider } from './useOutputs'
@@ -17,11 +18,13 @@ export function AppProvider({ children }) {
             <MovementsProvider>
               <OutputTypesProvider>
                 <InputTypesProvider>
-                  <OutputsProvider>
-                    <InputsProvider>
-                      {children}
-                    </InputsProvider>
-                  </OutputsProvider>
+                  <PriceTablesProvider>
+                    <OutputsProvider>
+                      <InputsProvider>
+                        {children}
+                      </InputsProvider>
+                    </OutputsProvider>
+                  </PriceTablesProvider>
                 </InputTypesProvider>
               </OutputTypesProvider>
             </MovementsProvider>

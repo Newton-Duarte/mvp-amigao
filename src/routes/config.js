@@ -8,8 +8,9 @@ const Users = lazy(() => import('../pages/Users'));
 const Products = lazy(() => import('../pages/Products'));
 const Customers = lazy(() => import('../pages/Customers'));
 const Vendors = lazy(() => import('../pages/Vendors'));
-const Movements = lazy(() => import('../pages/Movements'));
+// const Movements = lazy(() => import('../pages/Movements'));
 const Outputs = lazy(() => import('../pages/Outputs'));
+const Inputs = lazy(() => import('../pages/Inputs'));
 
 export const routes = [
   {
@@ -44,15 +45,21 @@ export const routes = [
     name: 'Fornecedores',
   },
   {
+    path: '/inputs',
+    component: Inputs,
+    icon: '',
+    name: 'Entradas',
+  },
+  {
     path: '/outputs',
     component: Outputs,
     icon: '',
     name: 'Saídas',
   },
-  {
-    path: '/movements',
-    component: Movements,
-    icon: '',
-    name: 'Movimentos',
-  }
+  // {
+  //   path: '/movements',
+  //   component: Movements,
+  //   icon: '',
+  //   name: 'Movimentos',
+  // }
 ]

@@ -12,6 +12,12 @@ export function ProductsProvider({ children }) {
         name: 'Água Mineral Mainá 20L',
         price: 6.00,
         quantity: 0
+      },
+      {
+        id: 2,
+        name: 'Água Mineral Mainá 10L',
+        price: 5.00,
+        quantity: 0
       }
     ])
   }, [])

@@ -12,6 +12,12 @@ export function UsersProvider({ children }) {
         name: 'Colaborador 01',
         email: 'colaborador01@test.com',
         createdAt: new Date(2021, 5, 1)
+      },
+      {
+        id: 2,
+        name: 'Colaborador 02',
+        email: 'colaborador02@test.com',
+        createdAt: new Date(2021, 5, 1)
       }
     ])
   }, [])

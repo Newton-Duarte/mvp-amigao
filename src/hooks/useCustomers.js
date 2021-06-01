@@ -22,6 +22,22 @@ export function CustomersProvider({ children }) {
         phone: '',
         email: '',
         createdAt: new Date(2021, 5, 1)
+      }, 
+      {
+        id: 2,
+        name: 'Cliente 02',
+        businessName: 'Cliente 02 LTDA',
+        employerNumber: '',
+        nationalIdentity: '',
+        streetName: '',
+        streetNumber: '',
+        complement: '',
+        city: 'Maceió',
+        state: 'AL',
+        postalCode: '',
+        phone: '',
+        email: '',
+        createdAt: new Date(2021, 5, 1)
       }
     ])
   }, [])

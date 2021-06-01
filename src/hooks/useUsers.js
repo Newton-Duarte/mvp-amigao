@@ -9,9 +9,9 @@ export function UsersProvider({ children }) {
     setUsers([
       {
         id: 1,
-        name: 'John Doe',
-        email: 'johndoe@gmail.com',
-        createdAt: new Date(2021, 4, 7)
+        name: 'Colaborador 01',
+        email: 'colaborador01@test.com',
+        createdAt: new Date(2021, 5, 1)
       }
     ])
   }, [])

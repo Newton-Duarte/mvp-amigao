@@ -4,7 +4,9 @@ import { CustomersProvider } from './useCustomers'
 import { VendorsProvider } from './useVendors'
 import { MovementsProvider } from './useMovements'
 import { OutputTypesProvider } from './useOutputTypes'
+import { InputTypesProvider } from './useInputTypes'
 import { OutputsProvider } from './useOutputs'
+import { InputsProvider } from './useInputs'
 
 export function AppProvider({ children }) {
   return (
@@ -14,9 +16,13 @@ export function AppProvider({ children }) {
           <VendorsProvider>
             <MovementsProvider>
               <OutputTypesProvider>
-                <OutputsProvider>
-                  {children}
-                </OutputsProvider>
+                <InputTypesProvider>
+                  <OutputsProvider>
+                    <InputsProvider>
+                      {children}
+                    </InputsProvider>
+                  </OutputsProvider>
+                </InputTypesProvider>
               </OutputTypesProvider>
             </MovementsProvider>
           </VendorsProvider>

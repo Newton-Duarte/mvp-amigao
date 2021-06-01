@@ -156,7 +156,9 @@ export function MovementModal({ isOpen, onRequestClose, editMovement, onSubmit }
   const handleChangeUser = ({ target }) => {
     const userId = target.value
     const user = users.find(user => +user.id === +userId)
-    setMovement({ ...movement, userId: user.id, user: user.name })
+    if (user) {
+      setMovement({ ...movement, userId: user.id, user: user.name })
+    }
   }
 
   const handleChangeType = ({ target }) => {
@@ -174,19 +176,25 @@ export function MovementModal({ isOpen, onRequestClose, editMovement, onSubmit }
   const handleChangeCustomer = ({ target }) => {
     const customerId = target.value
     const customer = customers.find(customer => +customer.id === +customerId)
-    setMovement({ ...movement, customerId: customer.id, customer: customer.name })
+    if (customer) {
+      setMovement({ ...movement, customerId: customer.id, customer: customer.name })
+    }
   }
 
   const handleChangeVendor = ({ target }) => {
     const vendorId = target.value
     const vendor = vendors.find(vendor => +vendor.id === +vendorId)
-    setMovement({ ...movement, vendorId: vendor.id, vendor: vendor.name })
+    if (vendor) {
+      setMovement({ ...movement, vendorId: vendor.id, vendor: vendor.name })
+    }
   }
 
   const handleChangeProduct = ({ target }) => {
     const productId = target.value
     const product = products.find(product => +product.id === +productId)
-    setMovementItem({ ...movementItem, productId: product.id, product: product.name, productPrice: product.price })
+    if (product) {
+      setMovementItem({ ...movementItem, productId: product.id, product: product.name, productPrice: product.price })
+    }
   }
 
   return (

@@ -154,25 +154,33 @@ export function InputModal({ isOpen, onRequestClose, editInput, onSubmit }) {
   const handleChangeUser = ({ target }) => {
     const userId = target.value
     const user = users.find(user => +user.id === +userId)
-    setInput({ ...input, userId: user.id, user: user.name })
+    if (user) {
+      setInput({ ...input, userId: user.id, user: user.name })
+    }
   }
 
   const handleChangeType = ({ target }) => {
     const typeId = target.value
     const inputType = inputTypes.find(inputType => +inputType.id === +typeId)
-    setInput({ ...input, typeId: inputType.id, type: inputType.name })
+    if (inputType) {
+      setInput({ ...input, typeId: inputType.id, type: inputType.name })
+    }
   }
 
   const handleChangeVendor = ({ target }) => {
     const vendorId = target.value
     const vendor = vendors.find(vendor => +vendor.id === +vendorId)
-    setInput({ ...input, vendorId: vendor.id, vendor: vendor.name })
+    if (vendor) {
+      setInput({ ...input, vendorId: vendor.id, vendor: vendor.name })
+    }
   }
 
   const handleChangeProduct = ({ target }) => {
     const productId = target.value
     const product = products.find(product => +product.id === +productId)
-    setInputItem({ ...inputItem, productId: product.id, product: product.name, productPrice: product.price })
+    if (product) {
+      setInputItem({ ...inputItem, productId: product.id, product: product.name, productPrice: product.price })
+    }
   }
 
   return (

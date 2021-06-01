@@ -9,9 +9,9 @@ export function CustomersProvider({ children }) {
     setCustomers([
       {
         id: 1,
-        name: 'Newton Duarte',
-        businessName: 'Newton LTDA',
-        employerNumber: '069.836.994-75',
+        name: 'Cliente 01',
+        businessName: 'Cliente 01 LTDA',
+        employerNumber: '',
         nationalIdentity: '',
         streetName: '',
         streetNumber: '',
@@ -21,7 +21,7 @@ export function CustomersProvider({ children }) {
         postalCode: '',
         phone: '',
         email: '',
-        createdAt: new Date(2021, 4, 8)
+        createdAt: new Date(2021, 5, 1)
       }
     ])
   }, [])

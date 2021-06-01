@@ -9,6 +9,7 @@ const Products = lazy(() => import('../pages/Products'));
 const Customers = lazy(() => import('../pages/Customers'));
 const Vendors = lazy(() => import('../pages/Vendors'));
 // const Movements = lazy(() => import('../pages/Movements'));
+const PriceTables = lazy(() => import('../pages/PriceTables'));
 const Outputs = lazy(() => import('../pages/Outputs'));
 const Inputs = lazy(() => import('../pages/Inputs'));
 
@@ -43,6 +44,12 @@ export const routes = [
     component: Vendors,
     icon: '',
     name: 'Fornecedores',
+  },
+  {
+    path: '/price-tables',
+    component: PriceTables,
+    icon: '',
+    name: 'TabPreços',
   },
   {
     path: '/inputs',

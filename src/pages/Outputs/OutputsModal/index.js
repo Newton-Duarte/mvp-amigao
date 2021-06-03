@@ -43,34 +43,7 @@ export function OutputModal({ isOpen, onRequestClose, editOutput, onSubmit }) {
   const [editOutputItem, setEditOutputItem] = useState()
   const [priceTable, setPriceTable] = useState()
 
-  useEffect(() => {
-    if (editOutput) {
-      setOutput(editOutput)
-    }
-  }, [editOutput])
-
-  useEffect(() => {
-    if (!isOpen) {
-      resetForm()
-    }
-  }, [isOpen])
-
-  const totalOutput = output.items.reduce((acc, item) => {
-    acc += +item.total;
-    return acc;
-  }, 0);
-
-  const handleSubmit = useCallback(event => {
-    event.preventDefault()
-    onSubmit({
-      ...output,
-      total: totalOutput
-    })
-
-    resetForm()
-  }, [output, onSubmit, totalOutput]);
-
-  const resetForm = () => {
+  const resetForm = useCallback(() => {
     setOutput({
       customerId: '',
       customer: '',
@@ -81,7 +54,29 @@ export function OutputModal({ isOpen, onRequestClose, editOutput, onSubmit }) {
       status: 'Pendente',
       items: []
     })
-  }
+    resetItemForm()
+    setLastId(0)
+  }, [])
+
+  useEffect(() => {
+    if (editOutput) {
+      setOutput(editOutput)
+      setLastId(
+        editOutput.items[editOutput.items.length - 1]?.id
+      )
+    }
+  }, [editOutput])
+
+  useEffect(() => {
+    if (!isOpen) {
+      resetForm()
+    }
+  }, [isOpen, resetForm])
+
+  const totalOutput = output.items.reduce((acc, item) => {
+    acc += +item.total;
+    return acc;
+  }, 0)
 
   const resetItemForm = () => {
     setOutputItem({
@@ -117,7 +112,8 @@ export function OutputModal({ isOpen, onRequestClose, editOutput, onSubmit }) {
   }, [lastId, output, outputItem])
 
   const handleEditItemClick = id => {
-    const item = output.items.find(mItem => mItem.id === id)
+    const item = output.items.find(mItem => +mItem.id === +id)
+    console.log(id, item)
     setEditOutputItem(item)
     setIsItemModalOpen(true)
   }
@@ -126,7 +122,7 @@ export function OutputModal({ isOpen, onRequestClose, editOutput, onSubmit }) {
     setOutput({
       ...output,
       items: output.items.map(mapItem => {
-        if (mapItem.id === item.id) {
+        if (+mapItem.id === +item.id) {
           return {
             ...item,
             total: item.quantity * item.productPrice,
@@ -228,6 +224,16 @@ export function OutputModal({ isOpen, onRequestClose, editOutput, onSubmit }) {
     })
   }
 
+  const handleSubmit = useCallback(event => {
+    event.preventDefault()
+    onSubmit({
+      ...output,
+      total: totalOutput
+    })
+
+    resetForm()
+  }, [output, onSubmit, totalOutput, resetForm])
+
   return (
     <Modal
       isOpen={isOpen}
@@ -321,7 +327,7 @@ export function OutputModal({ isOpen, onRequestClose, editOutput, onSubmit }) {
       <EditOutputItemModal
         isOpen={isItemModalOpen}
         onRequestClose={handleCloseItemModal}
-        outputItem={editOutputItem}
+        movementItem={editOutputItem}
         onSubmit={handleEditItem}
       />
     </Modal>

@@ -8,6 +8,7 @@ import { OutputTypesProvider } from './useOutputTypes'
 import { InputTypesProvider } from './useInputTypes'
 import { OutputsProvider } from './useOutputs'
 import { InputsProvider } from './useInputs'
+import { PackingListsProvider } from './usePackingLists'
 
 export function AppProvider({ children }) {
   return (
@@ -21,7 +22,9 @@ export function AppProvider({ children }) {
                   <PriceTablesProvider>
                     <OutputsProvider>
                       <InputsProvider>
-                        {children}
+                        <PackingListsProvider>
+                          {children}
+                        </PackingListsProvider>
                       </InputsProvider>
                     </OutputsProvider>
                   </PriceTablesProvider>

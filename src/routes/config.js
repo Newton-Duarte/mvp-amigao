@@ -8,7 +8,7 @@ const Users = lazy(() => import('../pages/Users'));
 const Products = lazy(() => import('../pages/Products'));
 const Customers = lazy(() => import('../pages/Customers'));
 const Vendors = lazy(() => import('../pages/Vendors'));
-// const Movements = lazy(() => import('../pages/Movements'));
+const PackingLists = lazy(() => import('../pages/PackingLists'));
 const PriceTables = lazy(() => import('../pages/PriceTables'));
 const Outputs = lazy(() => import('../pages/Outputs'));
 const Inputs = lazy(() => import('../pages/Inputs'));
@@ -63,10 +63,10 @@ export const routes = [
     icon: '',
     name: 'Saídas',
   },
-  // {
-  //   path: '/movements',
-  //   component: Movements,
-  //   icon: '',
-  //   name: 'Movimentos',
-  // }
+  {
+    path: '/expeditions',
+    component: PackingLists,
+    icon: '',
+    name: 'Romaneio',
+  }
 ]

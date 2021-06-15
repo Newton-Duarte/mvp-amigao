@@ -1,15 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 
-import { useOutputs } from '../../../hooks/useOutputs'
 import { useUsers } from '../../../hooks/useUsers'
 
-import { Modal, Select, Button, Input, FormGroup, Chip } from "../../../components/Common";
+import { Modal, Select, Button, FormGroup, Chip } from "../../../components/Common";
 import { PackingListOutputsTable } from '../PackingListOutputsTable'
 import { PackingListOutputsProductsTable } from '../PackingListOutputsProductsTable'
-import { EditPackingListItemModal } from '../EditPackingListItemModal'
 
-import { Actions, AddItem, Container, Header, ItemsContainer, ItemsHeader, TabsContainer, TabButton, TabContent, ItemsTotal, AddButton } from './styles';
-import { formatNumberToCurrency } from "../../../utils/formatNumberToCurrency";
+import { Actions, Container, Header, ItemsContainer, ItemsHeader, TabsContainer, TabButton, TabContent, AddButton } from './styles';
 import { OutputsListSelectModal } from "../OutputsListSelectModal";
 
 export function PackingListModal({ isOpen, onRequestClose, editPackingList, onSubmit }) {
@@ -21,10 +18,7 @@ export function PackingListModal({ isOpen, onRequestClose, editPackingList, onSu
     status: 'Pendente',
     items: []
   })
-  const { outputs } = useOutputs()
   const { users } = useUsers()
-
-  const [lastId, setLastId] = useState(0)
 
   useEffect(() => {
     if (editPackingList) {
